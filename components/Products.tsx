@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Heart } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const Products = () => {
@@ -26,44 +25,64 @@ const Products = () => {
   }, []);
 
   return (
-    <div className="w-[1707px] h-[1056px]">
-      <div className="font-bold flex gap-10 pl-[220px] pt-[56px]">
+    <div className="w-full px-4 md:px-10 mt-[40px] md:mt-[80px]">
+      
+      {/* BUTTONS */}
+      <div className="font-bold flex flex-wrap justify-center md:justify-start gap-6 md:gap-10 md:ml-[180px]">
         <button
           onClick={() => setActiveButton("new")}
           style={{ color: activeButton === "new" ? "black" : "gray" }}
-          className="cursor-pointer"
+          className="cursor-pointer text-sm md:text-base"
         >
           New Arrival
         </button>
+
         <button
           onClick={() => setActiveButton("best")}
           style={{ color: activeButton === "best" ? "black" : "gray" }}
-          className="cursor-pointer"
+          className="cursor-pointer text-sm md:text-base"
         >
           Bestseller
         </button>
+
         <button
           onClick={() => setActiveButton("featured")}
           style={{ color: activeButton === "featured" ? "black" : "gray" }}
-          className="cursor-pointer"
+          className="cursor-pointer text-sm md:text-base"
         >
           Featured Products
         </button>
       </div>
 
-      <div className="flex flex-wrap gap-5 pl-[220px] pt-[20px]">
+      {/* PRODUCTS */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-6 md:px-[180px]">
         {products.slice(0, 8).map((product) => (
           <div
             key={product.id}
-            className="w-[300px] p-4 border rounded text-center bg-[#F6F6F6]"
+            className="w-full max-w-[300px] mx-auto p-4 border rounded text-center bg-[#F6F6F6] flex flex-col items-center"
           >
-            <Heart />
-            <img src={product.thumbnail} alt={product.title} className="" />
-            <h3 className="font-semibold">{product.title}</h3>
+            <div className="w-full flex justify-end">
+              <Heart />
+            </div>
+
+            <img
+              src={product.thumbnail}
+              alt={product.title}
+              className="w-[120px] h-[120px] object-contain my-3"
+            />
+
+            <h3 className="font-semibold text-sm md:text-base">
+              {product.title}
+            </h3>
+
             <p className="font-bold mt-2">${product.price}</p>
-              <button className="w-[158px] h-[48px] bg-black rounded-xl text-white" onClick={()=> router.push(`/ProductsDetails/${product.id}`)}>
-                Buy Now
-              </button>
+
+            <button
+              className="w-[140px] md:w-[158px] h-[44px] md:h-[48px] bg-black rounded-xl text-white mt-3"
+              onClick={() => router.push(`/ProductsDetails/${product.id}`)}
+            >
+              Buy Now
+            </button>
           </div>
         ))}
       </div>
