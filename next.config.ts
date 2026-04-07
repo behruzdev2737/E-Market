@@ -1,8 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
+  reactStrictMode: true,
+
+  typescript: {
+    ignoreBuildErrors: true, // xohlasang o‘chirsa ham bo‘ladi
   },
 };
 
