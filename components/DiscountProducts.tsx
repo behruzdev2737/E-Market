@@ -49,7 +49,7 @@ const DiscountProducts = () => {
               <Heart />
             </div>
 
-            <Image
+            <img
               src={product.thumbnail}
               alt={product.title}
               className="w-[120px] h-[120px] object-contain my-3"
