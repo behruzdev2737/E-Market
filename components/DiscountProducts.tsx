@@ -1,12 +1,22 @@
 'use client'
 import axios from 'axios';
 import { Heart } from 'lucide-react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
 const DiscountProducts = () => {
 
-  const [products, setProducts] = useState<any[]>([]); 
+  type Product = {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  quantity?: number;
+  thumbnail:string
+};
+
+  const [products, setProducts] = useState<Product[]>([]); 
   const router = useRouter()
 
   useEffect(() => {
@@ -39,7 +49,7 @@ const DiscountProducts = () => {
               <Heart />
             </div>
 
-            <img
+            <Image
               src={product.thumbnail}
               alt={product.title}
               className="w-[120px] h-[120px] object-contain my-3"
