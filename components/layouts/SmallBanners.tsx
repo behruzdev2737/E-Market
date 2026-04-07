@@ -1,3 +1,5 @@
+import type { StaticImageData } from "next/image";
+
 import Playstation from "@/assets/PlayStation.png";
 import HeadPhone from "@/assets/hero__gnfk5g59t0qe_xlarge_2x 1headphone.png";
 import WizualGlasses from "@/assets/image 36.png";
@@ -7,15 +9,17 @@ const SmallBanners = () => {
   return (
     <div className="w-full px-4 md:px-10 py-6">
       
-      {/* GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
         {/* LEFT SIDE */}
         <div className="flex flex-col gap-4">
           
-          {/* Playstation */}
           <div className="flex flex-col sm:flex-row items-center gap-4">
-            <img src={Playstation.src} alt="" className="w-[220px] sm:w-[300px] md:w-[360px] object-contain" />
+            <img
+              src={(Playstation as StaticImageData).src}
+              alt="Playstation"
+              className="w-[220px] sm:w-[300px] md:w-[360px] object-contain"
+            />
             <div>
               <h1 className="text-[28px] sm:text-[40px] md:text-[59px] font-semibold">
                 Playstation 5
@@ -27,12 +31,14 @@ const SmallBanners = () => {
             </div>
           </div>
 
-          {/* Bottom small cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             
-            {/* AirPods */}
             <div className="flex items-center gap-4 bg-[#EDEDED] p-4">
-              <img src={HeadPhone.src} alt="" className="w-[80px] sm:w-[100px]" />
+              <img
+                src={(HeadPhone as StaticImageData).src}
+                alt="Headphones"
+                className="w-[80px] sm:w-[100px]"
+              />
               <div>
                 <h1 className="text-[20px] md:text-[30px] font-semibold leading-tight">
                   Apple AirPods <span className="font-bold">Max</span>
@@ -43,9 +49,12 @@ const SmallBanners = () => {
               </div>
             </div>
 
-            {/* Vision */}
             <div className="flex items-center gap-4 bg-[#353535] p-4">
-              <img src={WizualGlasses.src} alt="" className="w-[80px] sm:w-[100px]" />
+              <img
+                src={(WizualGlasses as StaticImageData).src}
+                alt="Vision Pro"
+                className="w-[80px] sm:w-[100px]"
+              />
               <div>
                 <h1 className="text-[20px] md:text-[30px] font-semibold text-white">
                   Apple Vision <span className="font-bold">Pro</span>
@@ -59,7 +68,7 @@ const SmallBanners = () => {
           </div>
         </div>
 
-        {/* RIGHT SIDE - MACBOOK */}
+        {/* RIGHT SIDE */}
         <div className="flex flex-col md:flex-row items-center justify-between bg-[#EDEDED] p-6">
           
           <div className="mb-6 md:mb-0 md:ml-[50px]">
@@ -76,9 +85,9 @@ const SmallBanners = () => {
             </button>
           </div>
 
-          <img 
-            src={Macbook.src} 
-            alt="" 
+          <img
+            src={(Macbook as StaticImageData).src}
+            alt="MacBook"
             className="w-[200px] sm:w-[260px] md:w-[292px] object-contain"
           />
         </div>

@@ -4,12 +4,21 @@ import axios from "axios";
 import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+type Product = {
+  id: number;
+  title: string;
+  price: number;
+  thumbnail: string;
+};
+
 const Products = () => {
   const router = useRouter();
+
   const [activeButton, setActiveButton] = useState<
     "new" | "best" | "featured" | null
   >(null);
-  const [products, setProducts] = useState<any[]>([]);
+
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -26,7 +35,6 @@ const Products = () => {
 
   return (
     <div className="w-full px-4 md:px-10 mt-[40px] md:mt-[80px]">
-      
       {/* BUTTONS */}
       <div className="font-bold flex flex-wrap justify-center md:justify-start gap-6 md:gap-10 md:ml-[180px]">
         <button

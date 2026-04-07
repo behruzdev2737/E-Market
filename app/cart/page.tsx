@@ -3,8 +3,20 @@ import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
+
 const CartPage = () => {
-  const [cart, setCart] = useState<any[]>([]);
+
+  type CartItem = {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  quantity: number;
+  color?: string;
+};
+
+
+  const [cart, setCart] = useState<CartItem[]>([]);
   const router = useRouter();
 
   useEffect(() => {

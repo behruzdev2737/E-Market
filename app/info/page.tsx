@@ -2,17 +2,29 @@
 import React, { useEffect, useState } from "react";
 import { MapPin, Truck, CreditCard } from "lucide-react";
 import { useRouter } from "next/navigation";
-import Card from '@/assets/image 65.png'
+import Card from "@/assets/image 65.png";
+
+/* ✅ TYPE QO‘SHILDI */
+type CartItem = {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  quantity: number;
+  color?: string;
+};
 
 const CheckoutPage = () => {
   const [step, setStep] = useState(1);
-  const [selectedAddress, setSelectedAddress] = useState<number | null>(1);
-  const [cart, setCart] = useState<any[]>([]);
+  const [selectedAddress, setSelectedAddress] = useState<number>(1);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const [showSuccess, setShowSuccess] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const storedCart: CartItem[] = JSON.parse(
+      localStorage.getItem("cart") || "[]"
+    );
     setCart(storedCart);
   }, []);
 
@@ -25,7 +37,10 @@ const CheckoutPage = () => {
     },
   ];
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
   const estimatedTax = 50;
   const shipping = 29;
   const grandTotal = total + estimatedTax + shipping;
@@ -37,7 +52,9 @@ const CheckoutPage = () => {
         <div
           key={a.id}
           className={`p-4 border rounded-xl cursor-pointer ${
-            selectedAddress === a.id ? "border-black bg-gray-50" : "border-gray-200"
+            selectedAddress === a.id
+              ? "border-black bg-gray-50"
+              : "border-gray-200"
           }`}
           onClick={() => setSelectedAddress(a.id)}
         >
@@ -140,10 +157,19 @@ const CheckoutPage = () => {
             placeholder="Cardholder Name"
             className="border p-3 rounded-xl"
           />
-          <input placeholder="Card Number" className="border p-3 rounded-xl" />
+          <input
+            placeholder="Card Number"
+            className="border p-3 rounded-xl"
+          />
           <div className="flex gap-3">
-            <input placeholder="Exp. Date" className="border p-3 rounded-xl w-1/2" />
-            <input placeholder="CVV" className="border p-3 rounded-xl w-1/2" />
+            <input
+              placeholder="Exp. Date"
+              className="border p-3 rounded-xl w-1/2"
+            />
+            <input
+              placeholder="CVV"
+              className="border p-3 rounded-xl w-1/2"
+            />
           </div>
           <label className="flex items-center gap-2 text-sm mt-2">
             <input type="checkbox" defaultChecked /> Same as billing address
@@ -159,7 +185,9 @@ const CheckoutPage = () => {
         <h1 className="text-3xl font-bold mb-4 text-green-600">
           ✅ Sizning buyurtmangiz tasdiqlandi!
         </h1>
-        <p className="text-gray-600 mb-6">Tez orada siz bilan boglanamiz.</p>
+        <p className="text-gray-600 mb-6">
+          Tez orada siz bilan boglanamiz.
+        </p>
         <button
           onClick={() => {
             localStorage.removeItem("cart");
@@ -178,13 +206,17 @@ const CheckoutPage = () => {
       <div className="flex justify-between mb-10">
         <div className="flex items-center gap-2">
           <MapPin className={`${step >= 1 ? "text-black" : "text-gray-400"}`} />
-          <span className={`${step >= 1 ? "font-semibold" : "text-gray-400"}`}>
+          <span
+            className={`${step >= 1 ? "font-semibold" : "text-gray-400"}`}
+          >
             Step 1: Address
           </span>
         </div>
         <div className="flex items-center gap-2">
           <Truck className={`${step >= 2 ? "text-black" : "text-gray-400"}`} />
-          <span className={`${step >= 2 ? "font-semibold" : "text-gray-400"}`}>
+          <span
+            className={`${step >= 2 ? "font-semibold" : "text-gray-400"}`}
+          >
             Step 2: Shipping
           </span>
         </div>
@@ -192,7 +224,9 @@ const CheckoutPage = () => {
           <CreditCard
             className={`${step >= 3 ? "text-black" : "text-gray-400"}`}
           />
-          <span className={`${step >= 3 ? "font-semibold" : "text-gray-400"}`}>
+          <span
+            className={`${step >= 3 ? "font-semibold" : "text-gray-400"}`}
+          >
             Step 3: Payment
           </span>
         </div>
@@ -208,7 +242,9 @@ const CheckoutPage = () => {
         <button
           onClick={() => setStep(Math.max(1, step - 1))}
           className={`px-6 py-3 border rounded-xl ${
-            step === 1 ? "text-gray-400 border-gray-200" : "hover:bg-gray-100"
+            step === 1
+              ? "text-gray-400 border-gray-200"
+              : "hover:bg-gray-100"
           }`}
           disabled={step === 1}
         >

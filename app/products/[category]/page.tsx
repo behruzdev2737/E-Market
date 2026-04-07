@@ -6,9 +6,19 @@ import { Heart } from "lucide-react";
 
 
 const CategoryPage = () => {
+
+  type Product = {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  quantity?: number;
+  thumbnail:string;
+};
+
   const router = useRouter();
   const { category } = useParams(); 
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
